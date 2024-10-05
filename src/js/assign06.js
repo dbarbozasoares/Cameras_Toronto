@@ -119,9 +119,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (
         optChosen === "Cameras" &&
         data[i].Views[0].Status === "Enabled" &&
-        data[i].Views[0].Description.toLowerCase().includes(areaTyped.toLowerCase()) &&
+        data[i].Roadway.toLowerCase().includes(areaTyped.toLowerCase()) &&
         areaTyped !== ""
       ) {
+        console.log(data[i].Views[0].Description);
         const allCards = document.createElement("div");
         allCards.classList.add("allCards");
         counter++;
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const descriptionHeader = document.createElement("h2");
         descriptionHeader.classList.add("header-camera");
-        descriptionHeader.textContent = data[i].Views[0].Description;
+        descriptionHeader.textContent = `${data[i].Roadway} - ${data[i].Views[0].Description}`;
 
         card.appendChild(descriptionHeader);
 
@@ -224,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
   areasDrop.addEventListener("change", displayDataFromDrop);
 
   function displayDataFromDrop() {
-    console.log(data);
+    
     const optChosen = typeDropDown.value;
     let areas = areasDrop.value;
     counter = 0;
@@ -236,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const allCards = document.createElement("div");
       allCards.classList.add("allCards");
       const roadWayNoDash = roadWayUpdated;
-      console.log(data);
+      
       if (
         optChosen === "Cameras" &&
         data[i].Views[0].Status === "Enabled" &&
@@ -250,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const descriptionHeader = document.createElement("h2");
         descriptionHeader.classList.add("header-camera");
-        descriptionHeader.textContent = data[i].Views[0].Description;
+        descriptionHeader.textContent = `${data[i].Roadway} - ${data[i].Views[0].Description}`;
 
         card.appendChild(descriptionHeader);
 
