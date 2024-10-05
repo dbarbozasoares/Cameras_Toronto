@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         let validator = true;
         for (let j = i + 1; j < data.length; j++) {
-          const roadI = data[i].Roadway.replace(/-/, "");
-          const roadJ = data[j].Roadway.replace(/-/, "");
+          const roadI = data[i].RoadwayName.replace(/-/, "");
+          const roadJ = data[j].RoadwayName.replace(/-/, "");
           if (roadI === roadJ || roadI === "40") {
             validator = false;
             break;
@@ -85,15 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (validator) {
           const option = document.createElement("option");
           if (
-            data[i].Roadway.length === 2 ||
-            data[i].Roadway.length === 3 ||
+            data[i].RoadwayName.length === 2 ||
+            data[i].RoadwayName.length === 3 ||
             !isNaN(data[i].Roadway)
           ) {
-            option.value = `Highway ${data[i].Roadway}`;
-            option.textContent = `Highway ${data[i].Roadway}`;
+            option.value = `Highway ${data[i].RoadwayName}`;
+            option.textContent = `Highway ${data[i].RoadwayName}`;
           } else {
-            option.value = data[i].Roadway;
-            option.textContent = data[i].Roadway;
+            option.value = data[i].RoadwayName;
+            option.textContent = data[i].RoadwayName;
           }
           areas.appendChild(option);
         }
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchArea.value = "";
       } else if (
         optChosen === "Constructions" &&
-        (data[i].Roadway.toLowerCase().includes(areaTyped.toLowerCase()) ||
+        (data[i].RoadwayName.toLowerCase().includes(areaTyped.toLowerCase()) ||
           data[i].Description.toLowerCase().includes(areaTyped.toLowerCase())) &&
         areaTyped !== "" &&
         (data[i].Description !== data[i + 1]?.Description ||
@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
   areasDrop.addEventListener("change", displayDataFromDrop);
 
   function displayDataFromDrop() {
+    console.log(data);
     const optChosen = typeDropDown.value;
     let areas = areasDrop.value;
     counter = 0;
@@ -231,9 +232,11 @@ document.addEventListener("DOMContentLoaded", function () {
     results.innerHTML = "";
     document.querySelector(".results-header").innerHTML = "";
     for (let i = 0; i < data.length; i++) {
+      const roadWayUpdated = (data[i].Roadway || data[i].RoadwayName).replace(/-/g, "");
       const allCards = document.createElement("div");
       allCards.classList.add("allCards");
-      const roadWayNoDash = data[i].Roadway.replace(/-/, "");
+      const roadWayNoDash = roadWayUpdated;
+      console.log(data);
       if (
         optChosen === "Cameras" &&
         data[i].Views[0].Status === "Enabled" &&
