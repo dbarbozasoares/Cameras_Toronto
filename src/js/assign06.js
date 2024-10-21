@@ -29,14 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Inside json");
         console.log(baseUrl);
         console.log(json);
-        appendOption(json);
         data = json;
+        appendOption(data);
       });
     }
     areasDrop.selectedIndex = 0;
   });
 
   function appendOption(data) {
+    console.log("Calling append option");
     const areas = document.getElementById("areas-option");
     const type = typeDropDown.value;
 
