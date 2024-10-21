@@ -23,7 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Only fetch if a URL was created
     if (url) {
-      fetch(url)
+      fetch(url, {
+        method: "GET",
+        mode: 'no-cors',
+      })
       .then((response) => {
         // Check if response is OK
         if (!response.ok) {
