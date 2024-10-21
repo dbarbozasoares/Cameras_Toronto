@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const baseUrl = `https://511on.ca/api/v2/get/`;
+  const baseUrl = `https://cors-anywhere.herokuapp.com/https://511on.ca/api/v2/get/`;
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
@@ -11,30 +11,40 @@ document.addEventListener("DOMContentLoaded", function () {
   typeDropDown.addEventListener("change", function (event) {
     let url;
     const selectedValue = event.target.value;
-
+  
+    // Construct the URL based on selected value
     if (selectedValue === "Constructions") {
       url = `${baseUrl}constructionprojects`;
     } else if (selectedValue === "Cameras") {
       url = `${baseUrl}cameras`;
     }
-
+  
+    // Only fetch if a URL was created
     if (url) {
-      fetch(url)
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       .then((response) => {
-        if(!response.ok){
-          throw new Error('Fail to fetch url');
+        // Check if response is OK
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-        return response.json();
-      }).then((json) => {
-        console.log("Inside json");
-        console.log(baseUrl);
+        return response.json(); // Parse the JSON
+      })
+      .then((json) => {
         console.log(json);
         data = json;
+        // Handle the JSON data here
+        // For example, you can display results or populate a dropdown
         appendOption(data);
-        console.log("areasDrop:", areasDrop);
+      })
+      .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
       });
     }
-    areasDrop.selectedIndex = 0;
   });
 
   function appendOption(data) {
