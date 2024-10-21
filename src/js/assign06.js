@@ -31,13 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(json);
         data = json;
         appendOption(data);
+        console.log("areasDrop:", areasDrop);
       });
     }
     areasDrop.selectedIndex = 0;
   });
 
   function appendOption(data) {
-    alert(data);
+    console.log("Calling append option", data);
     const areas = document.getElementById("areas-option");
     const type = typeDropDown.value;
 
