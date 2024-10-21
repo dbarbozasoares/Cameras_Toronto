@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function appendOption(data) {
-    console.log("Calling append option");
+    alert(data);
     const areas = document.getElementById("areas-option");
     const type = typeDropDown.value;
 
