@@ -24,9 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*', // This won't do anything on the client side.
         },
-      })
+    })
       .then((response) => {
         // Check if response is OK
         if (!response.ok) {
