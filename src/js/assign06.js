@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       }).then((json) => {
         console.log("Inside json");
+        console.log(baseUrl);
         console.log(json);
         appendOption(json);
         data = json;
