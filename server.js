@@ -6,15 +6,16 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configure CORS for specific origins
+// Configure CORS for all origins
 const corsOptions = {
-  origin: 'https://cameras-toronto.vercel.app/', // Replace with your frontend URL
+  origin: '*', // Allow all origins
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow credentials (e.g., cookies, authorization headers)
+  credentials: false, // Set to true only if you need credentials
 };
 
-// Use the CORS middleware with the defined options
+// Use CORS middleware with options
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,11 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve the main HTML page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html')); 
-});
-
-// Example API endpoint (optional)
-app.get('/api/data', (req, res) => {
-  res.json({ message: 'Hello from the server!' });
 });
 
 // Start the server
