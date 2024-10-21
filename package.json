@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "assignment-4": "file:",
+    "axios": "^1.7.7",
     "bestzip": "2.2.1",
     "cors": "^2.8.5",
     "eslint": "8.51.0",

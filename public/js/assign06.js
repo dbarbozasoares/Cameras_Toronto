@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const baseUrl = `https://511on.ca/api/v2/get/`;
+  const baseUrl = `http://localhost:3000/api/data/`;
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
