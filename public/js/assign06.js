@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const baseUrl = `https://cors-anywhere.herokuapp.com/https://511on.ca/api/v2/get/`;
+  const baseUrl = `https://511on.ca/api/v2/get/`;
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
@@ -21,13 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Only fetch if a URL was created
     if (url) {
-      fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*', // This won't do anything on the client side.
-        },
-    })
+      fetch(url)
       .then((response) => {
         // Check if response is OK
         if (!response.ok) {
