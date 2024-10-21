@@ -19,15 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (url) {
-      var request = new XMLHttpRequest();
-      request.open("GET", url);
-      request.responseType = "json";
-
-      request.onload = function () {
-        data = request.response;
-        appendOption(data);
-      };
-      request.send();
+      fetch(url)
+      .then((response) => {
+        if(!response.ok){
+          throw new Error('Fail to fetch url');
+        }
+        return response.json();
+      }).then((json) => {
+        console.log("Inside json");
+        console.log(json);
+        appendOption(json);
+        data = json;
+      });
     }
     areasDrop.selectedIndex = 0;
   });
