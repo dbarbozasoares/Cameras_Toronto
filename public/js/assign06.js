@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const baseUrl = `http://localhost:3000/api/data/`;
+  const baseUrl = (window.location.hostname === 'cameras-toronto.vercel.app') // make sure we can access end point from vercel
+    ? 'https://cameras-toronto.vercel.app/api/data/' 
+    : 'http://localhost:3000/api/data/';
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
