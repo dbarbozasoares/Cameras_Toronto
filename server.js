@@ -30,7 +30,8 @@ app.get('/', (req, res) => {
 
 // Proxy endpoint to fetch data from the external API
 app.get('/api/data/cameras', (req, res) => {
-    const apiUrl = 'https://511on.ca/api/v2/get/cameras'; // Replace with your actual API URL
+    console.log("Inside api cameras route");
+    const apiUrl = 'https://511on.ca/api/v2/get/cameras';
 
     https.get(apiUrl, (response) => {
         let data = '';

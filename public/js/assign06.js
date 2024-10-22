@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const baseUrl = (window.location.hostname === 'cameras-toronto.vercel.app') // make sure we can access end point from vercel
     ? 'https://cameras-toronto.vercel.app/api/data/' 
     : 'http://localhost:3000/api/data/';
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Only fetch if a URL was created
-    if (proxyUrl+url) {
+    if (url) {
       fetch(url)
       .then((response) => {
         // Check if response is OK
