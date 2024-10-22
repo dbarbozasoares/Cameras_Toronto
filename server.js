@@ -32,29 +32,17 @@ app.get('/', (req, res) => {
 app.get('/api/data/cameras', (req, res) => {
     console.log("Inside api cameras route");
     const apiUrl = 'https://511on.ca/api/v2/get/cameras';
-
-    https.get(apiUrl, (response) => {
-        let data = '';
-
-        // Collect the data chunks
-        response.on('data', (chunk) => {
-            data += chunk;
-        });
-
-        // Handle the end of the response
-        response.on('end', () => {
-            try {
-                const jsonData = JSON.parse(data); // Parse the JSON data
-                res.json(jsonData); // Send the parsed data back to the client
-            } catch (error) {
-                console.error('Error parsing JSON:', error);
-                res.status(500).json({ message: 'Error parsing JSON' });
-            }
-        });
-    }).on('error', (error) => {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ message: 'Error fetching data' });
-    });
+    fetch(apiUrl).then((response) => {
+        if(!response.ok){
+            throw new Error("ERROR FEIOOO");
+        }
+        return response.json();
+    }).then((json) => {
+        res.json(json);
+    }).catch((error) => {
+        console.log(error);
+    })
+    
 });
 
 // Start the server

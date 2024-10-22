@@ -14,14 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
   typeDropDown.addEventListener("change", function (event) {
     let url;
     const selectedValue = event.target.value;
-    console.log("NEW URL: ",url);
     // Construct the URL based on selected value
     if (selectedValue === "Constructions") {
       url = `${baseUrl}constructionprojects`;
     } else if (selectedValue === "Cameras") {
       url = `${baseUrl}cameras`;
     }
-  
+    console.log(url);
     // Only fetch if a URL was created
     if (url) {
       fetch(url)
