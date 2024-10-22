@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const baseUrl = (window.location.hostname === 'cameras-toronto.vercel.app') // make sure we can access end point from vercel
     ? 'https://cameras-toronto.vercel.app/api/data/' 
     : 'http://localhost:3000/api/data/';
+    console.log(baseUrl);
 
   var results = document.querySelector(".results");
   var typeDropDown = document.getElementById("typeofsearch");
@@ -13,13 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
   typeDropDown.addEventListener("change", function (event) {
     let url;
     const selectedValue = event.target.value;
-  
+    console.log("NEW URL: ",url);
     // Construct the URL based on selected value
     if (selectedValue === "Constructions") {
       url = `${baseUrl}constructionprojects`;
     } else if (selectedValue === "Cameras") {
       url = `${baseUrl}cameras`;
-      console.log("NEW URL: ",url);
     }
   
     // Only fetch if a URL was created
