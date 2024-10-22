@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
       url = `${baseUrl}constructionprojects`;
     } else if (selectedValue === "Cameras") {
       url = `${baseUrl}cameras`;
+      console.log("NEW URL: ",url);
     }
   
     // Only fetch if a URL was created
